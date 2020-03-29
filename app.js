@@ -55,13 +55,12 @@ function start(){
 function allEmployees(){
     connection.query("SELECT * FROM employee", (err, results) => {
         if (err) throw err;
-        console.log(results)
-        start();
+        console.table("All Employees", results)
     })
     
 }
 
-allEmployees();
+start();
 
 app.listen(PORT, function() {
     console.log("Server listening on: http://localhost:" + PORT);
