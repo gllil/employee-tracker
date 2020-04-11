@@ -4,6 +4,8 @@ const connection = require("./config/connection.js");
 const inquirer = require("inquirer");
 const cTable = require('console.table');
 
+const UpdateDB = require("./updateDB/updateDB")
+
 const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
@@ -37,16 +39,16 @@ function start(){
             manager();
             break;
         case "Add Employee":
-            addEmployee();
+            UpdateDB.addEmployee();
             break;
         case "Remove Employee":
-            deleteEmployee();
+            //deleteEmployee();
             break;
         case "Update Employee Role":
-            updateRole();
+            //updateRole();
             break;
         case "Update Employee Manager":
-            updateManager();
+            //updateManager();
             break;
     }
     })
@@ -55,13 +57,13 @@ function start(){
 function allEmployees(){
     connection.query("SELECT * FROM employee", (err, results) => {
         if (err) throw err;
-        console.table("All Employees", results)
+        console.log(results);
     })
     
 }
 
 start();
 
-app.listen(PORT, function() {
-    console.log("Server listening on: http://localhost:" + PORT);
-});
+// app.listen(PORT, function() {
+//     console.log("Server listening on: http://localhost:" + PORT);
+// });
